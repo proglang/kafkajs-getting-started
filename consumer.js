@@ -8,7 +8,7 @@ const kafka = new Kafka({
 const consumeMessages = async () => {
   const consumer = kafka.consumer({ groupId: "test-group" });
   await consumer.connect();
-  await consumer.subscribe({ topic: "topicTest.v1", fromBeginning: true });
+  await consumer.subscribe({ topic: "topicTest.v1" });
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
