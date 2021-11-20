@@ -6,7 +6,7 @@ const kafka = new Kafka({
   brokers: ["localhost:9092"],
 });
 
-const produceMessages = async (numberOfMessages = 10) => {
+const produceMessages = async () => {
   const producer = kafka.producer();
 
   await producer.connect();
@@ -14,9 +14,10 @@ const produceMessages = async (numberOfMessages = 10) => {
   let i = 1;
   while (1) {
     console.log(`Producing message ${i}`);
+    const message = { value: `Message ${i}` };
     await producer.send({
       topic: "topicTest.v1",
-      messages: [{ value: `Message ${i}` }],
+      messages: [message],
     });
 
     await sleep(500);

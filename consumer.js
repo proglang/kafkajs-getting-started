@@ -12,6 +12,7 @@ const consumeMessages = async () => {
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
+      console.log(`Receiving message:`);
       console.log({
         value: message.value.toString(),
         timestamp: message.timestamp,
