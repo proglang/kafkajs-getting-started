@@ -1,0 +1,21 @@
+{
+  "name": "kafkajs-getting-started",
+  "version": "1.0.0",
+  "description": "Getting started with KafkaJS",
+  "main": "index.js",
+  "dependencies": {
+    "kafkajs": "^1.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:producer": "node produce.js",
+    "start:consumer": "node consume.js"
+  },
+  "keywords": [
+    "kafka",
+    "kafkajs"
+  ],
+  "author": "fcristiani",
+  "license": "ISC"
+}
