@@ -1,8 +1,10 @@
 const { Kafka } = require("kafkajs");
 const sleep = require("./sleep");
+const { nanoid } = require("nanoid");
+const { KAFKA_TOPIC } = require("./config");
 
 const kafka = new Kafka({
-  clientId: "my-app",
+  clientId: "kafkajs-getting-started-app",
   brokers: ["localhost:9092"],
 });
 
@@ -13,11 +15,13 @@ const produceMessages = async () => {
 
   let i = 1;
   while (1) {
+    const message = { _id: nanoid(), data: `This is message ${i}` };
     console.log(`Producing message ${i}`);
-    const message = { value: `Message ${i}` };
+    console.log(JSON.stringify(message));
+
     await producer.send({
-      topic: "topicTest.v1",
-      messages: [message],
+      topic: KAFKA_TOPIC,
+      messages: [{ value: JSON.stringify(message) }],
     });
 
     await sleep(500);

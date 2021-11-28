@@ -1,22 +1,22 @@
 const { Kafka } = require("kafkajs");
+const { KAFKA_TOPIC } = require("./config");
 
 const kafka = new Kafka({
-  clientId: "my-app",
+  clientId: "kafkajs-getting-started-app",
   brokers: ["localhost:9092"],
 });
 
 const consumeMessages = async () => {
-  const consumer = kafka.consumer({ groupId: "test-group" });
+  const consumer = kafka.consumer({
+    groupId: "kafkajs-getting-started-group",
+  });
   await consumer.connect();
-  await consumer.subscribe({ topic: "topicTest.v1" });
+  await consumer.subscribe({ topic: KAFKA_TOPIC });
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
       console.log(`Receiving message:`);
-      console.log({
-        value: message.value.toString(),
-        timestamp: message.timestamp,
-      });
+      console.log(message.value.toString());
     },
   });
 };

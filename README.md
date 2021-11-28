@@ -10,30 +10,53 @@ $ cd kafkajs-getting-started
 $ npm i
 ```
 
-## Usage
+## Getting started
 
-1. Start Kafka locally
+1. Copy `.env.example` to a new `.env` file. You can leave the default values or choose new ones.
+
+```bash
+$ cp .env.example .env
+```
+
+2. Start Kafka locally. The `docker-compose` file will already create the topic defined in `KAFKA_TOPIC` and advertise a listener on `localhost:9092`.
 
 ```bash
 $ docker-compose up -d
 ```
 
-2. Split your terminal. Start the producer in the left panel. This will start sending messages every 500ms.
+## Producer
+
+1. Start the producer. This will start sending messages every 500ms.
 
 ```bash
 $ npm run start:producer
 ```
 
-3. Start the consumer in the right panel.
+2. You'll start seeing the produced messages in the console.
+
+   <img src="img/producer.png" alt="drawing" width="500"/>
+
+## Consumer
+
+1. Start the consumer.
 
 ```bash
 $ npm run start:consumer
 ```
 
-4. You'll start seeing the consumer printing the messages that the producer is sending.
-   ![Producer-consumer example](img/example.png "Kafka: Producer & consumer")
+2. You'll start seeing the consumed messages in the console.
 
-5. Stop Kafka
+   <img src="img/consumer.png" alt="drawing" width="500"/>
+
+## AKHQ
+
+1. Explore the topic messages in a UI using [akhq](https://akhq.io/). The `docker-compose` file in this repo already starts `akhq` for you. Browse to http://localhost:4001. You'll see the topic you defined for `KAFKA_TOPIC` in the `.env` file.
+
+![AKHQ UI](img/akhq-topic.png "AKHQ UI")
+
+## Teardown
+
+1. Stop Kafka locally
 
 ```bash
 $ docker-compose down
