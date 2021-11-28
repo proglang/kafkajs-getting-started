@@ -54,6 +54,18 @@ $ npm run start:consumer
 
 ![AKHQ UI](img/akhq-topic.png "AKHQ UI")
 
+## Kafkacat
+
+1. You can use [kcat (formerly known as kafkacat)](https://github.com/edenhill/kcat) by mounting on the network specified in the `docker-compose` file:
+
+```bash
+docker run --tty \
+           --network kafkajs-getting-started \
+           confluentinc/cp-kafkacat \
+           kafkacat -b kafka:29092 \
+                    -C -t kafkajs-getting-started.v1
+```
+
 ## Teardown
 
 1. Stop Kafka locally
