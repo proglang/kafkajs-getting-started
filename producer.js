@@ -1,11 +1,11 @@
 const { Kafka } = require("kafkajs");
 const sleep = require("./sleep");
 const { nanoid } = require("nanoid");
-const { KAFKA_TOPIC } = require("./config");
+const { KAFKA_TOPIC, KAFKA_BROKER } = require("./config");
 
 const kafka = new Kafka({
   clientId: "kafkajs-getting-started-app",
-  brokers: ["localhost:9092"],
+  brokers: [KAFKA_BROKER],
 });
 
 const produceMessages = async () => {

@@ -1,9 +1,9 @@
 const { Kafka } = require("kafkajs");
-const { KAFKA_TOPIC } = require("./config");
+const { KAFKA_TOPIC, KAFKA_BROKER } = require("./config");
 
 const kafka = new Kafka({
   clientId: "kafkajs-getting-started-app",
-  brokers: ["localhost:9092"],
+  brokers: [KAFKA_BROKER],
 });
 
 const consumeMessages = async () => {
